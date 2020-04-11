@@ -7,7 +7,7 @@ import {
   LOGOUT_FAILURE,
   VERIFY_REQUEST,
   VERIFY_SUCCESS,
-} from "../actions/types";
+} from "../actions/auth";
 
 export default (
   state = {

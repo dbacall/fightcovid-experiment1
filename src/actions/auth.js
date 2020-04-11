@@ -1,14 +1,12 @@
 import { myFirebase } from "../firebase/firebase";
-import {
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  LOGOUT_REQUEST,
-  LOGOUT_SUCCESS,
-  LOGOUT_FAILURE,
-  VERIFY_REQUEST,
-  VERIFY_SUCCESS,
-} from "./types";
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
+export const LOGOUT_REQUEST = "LOGOUT_REQUEST";
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+export const LOGOUT_FAILURE = "LOGOUT_FAILURE";
+export const VERIFY_REQUEST = "VERIFY_REQUEST";
+export const VERIFY_SUCCESS = "VERIFY_SUCCESS";
 
 const requestLogin = () => {
   return {
@@ -63,6 +61,7 @@ const verifySuccess = () => {
 
 export const loginUser = (email, password) => (dispatch) => {
   dispatch(requestLogin());
+  console.log("in login function", email, password);
   myFirebase
     .auth()
     .signInWithEmailAndPassword(email, password)
@@ -75,6 +74,7 @@ export const loginUser = (email, password) => (dispatch) => {
 };
 
 export const logoutUser = () => (dispatch) => {
+  console.log("in logout function");
   dispatch(requestLogout());
   myFirebase
     .auth()
@@ -83,7 +83,6 @@ export const logoutUser = () => (dispatch) => {
       dispatch(receiveLogout());
     })
     .catch((error) => {
-      //Do something with the error if you want!
       dispatch(logoutError());
     });
 };
